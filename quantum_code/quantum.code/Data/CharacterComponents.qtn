@@ -1,0 +1,12 @@
+﻿asset StatusData;
+
+component Status{
+    FP CurrentHealth;
+    Boolean IsDead;
+
+    asset_ref<StatusData> StatusData;
+}
+
+component Score{
+    
+}

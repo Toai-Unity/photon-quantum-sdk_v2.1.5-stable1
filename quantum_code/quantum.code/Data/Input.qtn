@@ -1,0 +1,4 @@
+﻿input{
+    Byte EncodedDirection;
+    button Attack;
+}
