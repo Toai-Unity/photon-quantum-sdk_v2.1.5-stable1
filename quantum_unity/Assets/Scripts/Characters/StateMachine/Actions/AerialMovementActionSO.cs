@@ -40,7 +40,7 @@ public class AerialMovementAction : StateAction
 		SetVelocityPerAxis(ref velocity.x, input.x, acceleration, speed);
 		SetVelocityPerAxis(ref velocity.z, input.z, acceleration, speed);
 
-		_protagonist.movementVector = velocity;
+		_protagonist.movementVector = input.normalized;
 	}
 
 	private void SetVelocityPerAxis(ref float currentAxisSpeed, float axisInput, float acceleration, float targetSpeed)

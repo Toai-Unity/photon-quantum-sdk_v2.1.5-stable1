@@ -11,6 +11,11 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 	// Assign delegate{} to events to initialise them with an empty delegate
 	// so we can skip the null check when we use them
 
+	// Quantum
+	public Vector2 MoveInput = Vector2.zero;
+	public bool AttackInput = false;
+	public bool JumpInput = false;
+
 	// Gameplay
 	public event UnityAction JumpEvent = delegate { };
 	public event UnityAction JumpCanceledEvent = delegate { };
@@ -75,9 +80,11 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 		switch (context.phase)
 		{
 			case InputActionPhase.Performed:
-				AttackEvent.Invoke();
+				AttackInput = true;
+                AttackEvent.Invoke();
 				break;
 			case InputActionPhase.Canceled:
+				AttackInput = false;
 				AttackCanceledEvent.Invoke();
 				break;
 		}
@@ -122,15 +129,22 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 	public void OnJump(InputAction.CallbackContext context)
 	{
 		if (context.phase == InputActionPhase.Performed)
-			JumpEvent.Invoke();
+		{
+			JumpInput = true;
+            JumpEvent.Invoke();
+        }
 
-		if (context.phase == InputActionPhase.Canceled)
-			JumpCanceledEvent.Invoke();
-	}
+        if (context.phase == InputActionPhase.Canceled)
+		{
+			JumpInput = false;
+            JumpCanceledEvent.Invoke();
+        }
+    }
 
 	public void OnMove(InputAction.CallbackContext context)
 	{
-		MoveEvent.Invoke(context.ReadValue<Vector2>());
+		MoveInput = context.ReadValue<Vector2>();
+		MoveEvent.Invoke(MoveInput);
 	}
 
 	public void OnRun(InputAction.CallbackContext context)

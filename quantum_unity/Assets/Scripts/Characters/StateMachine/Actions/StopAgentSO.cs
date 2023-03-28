@@ -27,9 +27,9 @@ public class StopAgent : StateAction
 
 	public override void OnStateEnter()
 	{
-		if (_agentDefined)
-		{
-			_agent.isStopped = true;
-		}
+		//if (_agentDefined)
+		//{
+		//	_agent.isStopped = true;
+		//}
 	}
 }

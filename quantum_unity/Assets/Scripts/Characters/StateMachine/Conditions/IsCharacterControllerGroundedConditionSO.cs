@@ -7,12 +7,20 @@ public class IsCharacterControllerGroundedConditionSO : StateConditionSO<IsChara
 
 public class IsCharacterControllerGroundedCondition : Condition
 {
-	private CharacterController _characterController;
+	//private CharacterController _characterController;
+	private Protagonist _protagonist;
 
 	public override void Awake(StateMachine stateMachine)
 	{
-		_characterController = stateMachine.GetComponent<CharacterController>();
-	}
+        //_characterController = stateMachine.GetComponent<CharacterController>();
+        _protagonist = stateMachine.GetComponent<Protagonist>();
 
-	protected override bool Statement() => _characterController.isGrounded;
+    }
+
+	protected override bool Statement()
+	{
+		//return _protagonist.isGrounded;
+		//return _characterController.isGrounded;
+		return true;
+    }
 }

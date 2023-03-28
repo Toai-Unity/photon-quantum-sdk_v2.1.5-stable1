@@ -10,3 +10,7 @@ component Status{
 component Score{
     
 }
+
+component PlayerLink{
+   player_ref Player;
+}

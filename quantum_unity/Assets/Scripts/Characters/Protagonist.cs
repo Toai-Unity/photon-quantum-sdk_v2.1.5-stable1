@@ -11,6 +11,8 @@ public class Protagonist : MonoBehaviour
 
 	private Vector2 _inputVector;
 	private float _previousSpeed;
+	public Transform checkGroundTransform;
+	[HideInInspector] public bool isGrounded = false;
 
 	//These fields are read and manipulated by the StateMachine actions
 	[NonSerialized] public bool jumpInput;
@@ -60,7 +62,8 @@ public class Protagonist : MonoBehaviour
 	private void Update()
 	{
 		RecalculateMovement();
-	}
+		GroundCheck();
+    }
 
 	private void RecalculateMovement()
 	{
@@ -104,7 +107,8 @@ public class Protagonist : MonoBehaviour
 		}
 		targetSpeed = Mathf.Lerp(_previousSpeed, targetSpeed, Time.deltaTime * 4f);
 
-		movementInput = adjustedMovement.normalized * targetSpeed;
+		//movementInput = adjustedMovement.normalized * targetSpeed;
+		movementInput = new Vector3(_inputReader.MoveInput.x, 0, _inputReader.MoveInput.y).normalized;
 
 		_previousSpeed = targetSpeed;
 	}
@@ -136,4 +140,20 @@ public class Protagonist : MonoBehaviour
 
 	// Triggered from Animation Event
 	public void ConsumeAttackInput() => attackInput = false;
+
+    void GroundCheck()
+    {
+        RaycastHit hit;
+        float distance = 1f;
+        Vector3 dir = new Vector3(0, -1);
+
+        if (Physics.Raycast(checkGroundTransform.position, dir, out hit, distance))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
 }
