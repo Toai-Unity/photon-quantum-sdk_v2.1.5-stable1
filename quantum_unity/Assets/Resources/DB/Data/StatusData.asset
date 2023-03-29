@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3015762b40ff0b64b9346eb9e7509fae, type: 3}
-  m_Name: StatusDataPigChef
+  m_Name: StatusData
   m_EditorClassIdentifier: 
   Settings:
     Identifier:
-      Path: Resources/DB/Data/StatusDataPigChef
+      Path: Resources/DB/Data/StatusData
       Guid:
-        Value: 4518468196957505300
+        Value: 3553700664247287848
+    MaxHealth:
+      RawValue: 327680
+    RespawnTime:
+      RawValue: 196608

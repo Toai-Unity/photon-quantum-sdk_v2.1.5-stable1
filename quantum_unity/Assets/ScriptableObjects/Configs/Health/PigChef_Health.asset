@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e005b717defd93a4c81276fd8caab626, type: 3}
   m_Name: PigChef_Health
   m_EditorClassIdentifier: 
-  _initialHealth: 50
+  _initialHealth: 5

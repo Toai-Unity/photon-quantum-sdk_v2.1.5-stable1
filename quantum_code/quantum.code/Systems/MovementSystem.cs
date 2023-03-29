@@ -1,6 +1,7 @@
 ﻿
 
 using Photon.Deterministic;
+using Quantum.Core;
 
 namespace Quantum
 {
@@ -24,6 +25,15 @@ namespace Quantum
                     FPQuaternion lookTo = FPQuaternion.LookRotation(direction, transform->Up);
                     FPVector3 rotation = FPQuaternion.Slerp(transform->Rotation, lookTo, frame.DeltaTime * FP.FromFloat_UNSAFE(1500)).AsEuler;
                     transform->Rotation = FPQuaternion.Euler(rotation);
+                }
+
+                if(input->Jump.WasPressed)
+                {
+                    if (kkc->Grounded)
+                    {
+                        kkc->Jump(frame as FrameBase);
+                        frame.Events.OnPlayerJump(pigchef);
+                    }
                 }
             }
         }

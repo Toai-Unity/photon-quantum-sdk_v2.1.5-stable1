@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Quantum;
+using System;
 using UnityEngine;
 
 /// <summary>
 /// <para>This component consumes input on the InputReader and stores its values. The input is then read, and manipulated, by the StateMachines's Actions.</para>
 /// </summary>
-public class Protagonist : MonoBehaviour
+public class Protagonist : QuantumCallbacks
 {
 	[SerializeField] private InputReader _inputReader = default;
 	[SerializeField] private TransformAnchor _gameplayCameraTransform = default;
@@ -30,13 +31,20 @@ public class Protagonist : MonoBehaviour
 	public const float GRAVITY_DIVIDER = .6f;
 	public const float AIR_RESISTANCE = 5f;
 
-	private void OnControllerColliderHit(ControllerColliderHit hit)
+    private EntityView entityView;
+
+    private void Start()
+    {
+        QuantumEvent.Subscribe<EventOnPlayerJump>(this, OnJump);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 		lastHit = hit;
 	}
 
-	//Adds listeners for events being triggered in the InputReader script
-	private void OnEnable()
+    //Adds listeners for events being triggered in the InputReader script
+    protected override void OnEnable()
 	{
 		_inputReader.JumpEvent += OnJumpInitiated;
 		_inputReader.JumpCanceledEvent += OnJumpCanceled;
@@ -44,11 +52,14 @@ public class Protagonist : MonoBehaviour
 		_inputReader.StartedRunning += OnStartedRunning;
 		_inputReader.StoppedRunning += OnStoppedRunning;
 		_inputReader.AttackEvent += OnStartedAttack;
-		//...
-	}
+        //...
+
+        entityView = GetComponent<EntityView>();
+
+    }
 
 	//Removes all listeners to the events coming from the InputReader script
-	private void OnDisable()
+	protected override void OnDisable()
 	{
 		_inputReader.JumpEvent -= OnJumpInitiated;
 		_inputReader.JumpCanceledEvent -= OnJumpCanceled;
@@ -155,5 +166,15 @@ public class Protagonist : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+	private void OnJump(EventOnPlayerJump obj)
+	{
+        if (entityView.EntityRef.Equals(obj.Player))
+		{
+			jumpInput = true;
+
+        }
+
     }
 }

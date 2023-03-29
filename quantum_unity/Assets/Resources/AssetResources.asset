@@ -43,6 +43,11 @@ MonoBehaviour:
         Id:
           Value: 5
       ResourcePath: DB/Configs/SimulationConfig
+    - Path: Resources/DB/Data/AttackData
+      AssetRef:
+        Id:
+          Value: 62203005195190695
+      ResourcePath: DB/Data/AttackData
     - Path: Resources/DB/ChopChop/PigChef|EntityPrototype
       AssetRef:
         Id:
@@ -58,13 +63,13 @@ MonoBehaviour:
         Id:
           Value: 2437605330551657343
       ResourcePath: DB/Map1_mesh
+    - Path: Resources/DB/Data/StatusData
+      AssetRef:
+        Id:
+          Value: 3553700664247287848
+      ResourcePath: DB/Data/StatusData
     - Path: Resources/DB/ChopChop/PigChef|EntityView
       AssetRef:
         Id:
           Value: 3778617174736326206
       ResourcePath: DB/ChopChop/PigChef
-    - Path: Resources/DB/Data/StatusDataPigChef
-      AssetRef:
-        Id:
-          Value: 4518468196957505300
-      ResourcePath: DB/Data/StatusDataPigChef

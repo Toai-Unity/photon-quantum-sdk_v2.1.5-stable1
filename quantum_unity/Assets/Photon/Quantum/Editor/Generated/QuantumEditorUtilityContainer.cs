@@ -28,6 +28,7 @@ namespace Quantum.Editor {
 
     [System.Serializable]
     public partial class KnownObjectsContainer : QuantumEditorUtility.SerializableObjectsContainerBase {
+      public Quantum.AttackData[] AttackData = {};
       public Quantum.StatusData[] StatusData = {};
       public Quantum.SimulationConfig[] SimulationConfig = {};
       public Quantum.BinaryData[] BinaryData = {};

@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Quantum;
+using UnityEngine;
 using UnityEngine.Events;
 
-public class Damageable : MonoBehaviour
+public class Damageable : QuantumCallbacks
 {
 	[Header("Health")]
 	[SerializeField] private HealthConfigSO _healthConfigSO;
@@ -45,19 +46,26 @@ public class Damageable : MonoBehaviour
 			_updateHealthUI.RaiseEvent();
 	}
 
-	private void OnEnable()
+	protected override void OnEnable()
 	{
 		if(_restoreHealth != null)
 			_restoreHealth.OnEventRaised += Cure;
+
+		QuantumEvent.Subscribe<EventOnPlayerTakeDamage>(this, OnTakeDamage);
 	}
 
-	private void OnDisable()
+    protected override void OnDisable()
 	{
 		if(_restoreHealth != null)
 			_restoreHealth.OnEventRaised -= Cure;
 	}
+    private void OnTakeDamage(EventOnPlayerTakeDamage eventOnPlayerTakeDamage)
+	{
+		ReceiveAnAttack((int) eventOnPlayerTakeDamage.Damage);
 
-	public void ReceiveAnAttack(int damage)
+    }
+
+    public void ReceiveAnAttack(int damage)
 	{
 		if (IsDead)
 			return;

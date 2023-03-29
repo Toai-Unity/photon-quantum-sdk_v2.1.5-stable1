@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PigChefAttack
   m_EditorClassIdentifier: 
   _attackStrength: 5
-  _attackReloadDuration: 1.5
+  _attackReloadDuration: 0.5

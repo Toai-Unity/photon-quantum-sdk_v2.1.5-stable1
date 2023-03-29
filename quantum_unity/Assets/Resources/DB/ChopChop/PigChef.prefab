@@ -2782,7 +2782,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5453483284017028094}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.091426246
   m_Height: 1.1348616
   m_Direction: 1
@@ -39233,6 +39233,7 @@ GameObject:
   - component: {fileID: -7265148507534635390}
   - component: {fileID: 2602469979684278653}
   - component: {fileID: 5671679532412387886}
+  - component: {fileID: -8498258907732977630}
   m_Layer: 0
   m_Name: PigChef
   m_TagString: Player
@@ -39326,7 +39327,7 @@ MonoBehaviour:
       Id:
         Value: 0
     SourceCollider: {fileID: 0}
-    IsEnabled: 0
+    IsEnabled: 1
     Shape2D:
       ShapeType: 0
       PolygonCollider:
@@ -39641,7 +39642,7 @@ MonoBehaviour:
       Value: 0
     StatusData:
       Id:
-        Value: 4518468196957505300
+        Value: 3553700664247287848
 --- !u!143 &5671679532412387886
 CharacterController:
   m_ObjectHideFlags: 0
@@ -39660,6 +39661,22 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &-8498258907732977630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453483284863301038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02e00ccb96b850489a0191eee96edf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prototype:
+    AttackData:
+      Id:
+        Value: 62203005195190695
 --- !u!1 &5453483284879013098
 GameObject:
   m_ObjectHideFlags: 0
