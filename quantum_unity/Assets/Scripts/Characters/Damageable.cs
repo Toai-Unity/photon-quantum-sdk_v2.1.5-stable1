@@ -62,7 +62,6 @@ public class Damageable : QuantumCallbacks
     private void OnTakeDamage(EventOnPlayerTakeDamage eventOnPlayerTakeDamage)
 	{
 		ReceiveAnAttack((int) eventOnPlayerTakeDamage.Damage);
-
     }
 
     public void ReceiveAnAttack(int damage)
