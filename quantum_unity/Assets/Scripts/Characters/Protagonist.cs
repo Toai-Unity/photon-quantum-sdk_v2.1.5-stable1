@@ -1,4 +1,6 @@
-﻿using Quantum;
+﻿using DG.Tweening.Core.Easing;
+using Photon.Deterministic;
+using Quantum;
 using System;
 using UnityEngine;
 
@@ -9,14 +11,16 @@ public class Protagonist : QuantumCallbacks
 {
 	[SerializeField] private InputReader _inputReader = default;
 	[SerializeField] private TransformAnchor _gameplayCameraTransform = default;
+    private QuantumGame _game = null;
 
-	private Vector2 _inputVector;
+    private Vector2 _inputVector;
 	private float _previousSpeed;
 	public Transform checkGroundTransform;
 	[HideInInspector] public bool isGrounded = false;
 
 	//These fields are read and manipulated by the StateMachine actions
 	[NonSerialized] public bool jumpInput;
+	[NonSerialized] public bool isMoving;
 	[NonSerialized] public bool extraActionInput;
 	[NonSerialized] public bool attackInput;
 	[NonSerialized] public Vector3 movementInput; //Initial input coming from the Protagonist script
@@ -74,7 +78,21 @@ public class Protagonist : QuantumCallbacks
 	{
 		RecalculateMovement();
 		GroundCheck();
+		isMoving = IsMoving();
     }
+    private bool IsMoving()
+	{
+        var f = QuantumRunner.Default.Game.Frames.Verified;
+        var kkc = f.Get<CharacterController3D>(entityView.EntityRef);
+		return kkc.Velocity.Magnitude > FP.FromFloat_UNSAFE(0.01f);
+    }
+
+	private bool IsAttacking()
+	{
+        var f = QuantumRunner.Default.Game.Frames.Verified;
+		//var attackComp = f.Get<Attack>(entityView.EntityRef);
+        return false;
+	}
 
 	private void RecalculateMovement()
 	{

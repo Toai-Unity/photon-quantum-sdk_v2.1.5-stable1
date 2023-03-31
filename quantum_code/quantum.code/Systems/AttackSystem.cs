@@ -13,7 +13,7 @@ namespace Quantum
 
                 if(input->Attack.WasPressed)
                 {
-
+                    CheckRaycastCollision(frame, pigchef);
                 }
             }
 
